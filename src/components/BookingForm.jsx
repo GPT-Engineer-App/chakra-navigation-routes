@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Heading, Input, Select, Button, Text, useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import InteractiveMap from "./InteractiveMap";
+// This import is fine and should remain at the top of the file
 
 const API_URL = "/locationCosts";
 
@@ -65,12 +65,6 @@ const BookingForm = () => {
     });
   };
 
-  const handleMapData = (data) => {
-    setOrigin(data.origin);
-    setDestination(data.destination);
-    setDistance(data.distance);
-  };
-
   return (
     <Box>
       <Heading size="md" mb={4}>
@@ -85,7 +79,7 @@ const BookingForm = () => {
       <Input placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} mb={4} />
       <Input placeholder="Vehicle Make" value={vehicleMake} onChange={(e) => setVehicleMake(e.target.value)} mb={4} />
       <Input placeholder="Vehicle Model" value={vehicleModel} onChange={(e) => setVehicleModel(e.target.value)} mb={4} />
-      <InteractiveMap onMapData={handleMapData} />
+      <InteractiveMap />
       <Text mb={4}>Total Distance: {distance} km</Text>
       <Input type="datetime-local" value={dateTime} onChange={(e) => setDateTime(e.target.value)} mb={4} />
       <Button colorScheme="teal" _hover={{ transform: "scale(1.05)" }} onClick={handleBooking}>
