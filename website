@@ -1,0 +1,101 @@
+import React from "react";
+import { Box, Heading, Text, Button, Stack, Image, Container, SimpleGrid } from "@chakra-ui/react";
+import { FaCar, FaTools, FaShieldAlt, FaThumbsUp } from "react-icons/fa";
+
+const Index = () => {
+  const features = [
+    {
+      icon: FaCar,
+      title: "Wide Range of Services",
+      description: "We offer a wide range of car services to cater to your needs.",
+    },
+    {
+      icon: FaTools,
+      title: "Expert Mechanics",
+      description: "Our skilled mechanics provide top-notch service.",
+    },
+    {
+      icon: FaShieldAlt,
+      title: "Secure Payments",
+      description: "We ensure secure and hassle-free payment options.",
+    },
+    {
+      icon: FaThumbsUp,
+      title: "Satisfaction Guaranteed",
+      description: "We strive for customer satisfaction with every service.",
+    },
+  ];
+
+  return (
+    <Box>
+      <Container maxW="container.lg" py={16}>
+        <Stack spacing={8} align="center" textAlign="center">
+          <Heading as="h1" size="2xl">
+            Welcome to Car Service Booking
+          </Heading>
+          <Text fontSize="xl" maxW="600px">
+            Book your car service online with ease and convenience. Our expert mechanics are ready to serve you.
+          </Text>
+          <Button colorScheme="blue" size="lg">
+            Book Now
+          </Button>
+        </Stack>
+      </Container>
+
+      <Container maxW="container.lg" py={16}>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+          <Box>
+            <Image src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxjYXIlMjBzZXJ2aWNlfGVufDB8fHx8MTcxMjExNzMyNXww&ixlib=rb-4.0.3&q=80&w=1080" alt="Car Service" />
+          </Box>
+          <Stack spacing={6}>
+            <Heading as="h2" size="xl">
+              Why Choose Us?
+            </Heading>
+            <Text fontSize="lg">We are committed to providing exceptional car services to keep your vehicle in top condition. Here's why you should choose us:</Text>
+            <Stack spacing={4}>
+              {features.map((feature, index) => (
+                <Box key={index} display="flex" alignItems="center">
+                  <Box as={feature.icon} color="blue.500" fontSize="2xl" mr={4} />
+                  <Box>
+                    <Heading as="h3" size="md" mb={2}>
+                      {feature.title}
+                    </Heading>
+                    <Text>{feature.description}</Text>
+                  </Box>
+                </Box>
+              ))}
+            </Stack>
+          </Stack>
+        </SimpleGrid>
+      </Container>
+
+      <Container maxW="container.lg" py={16} textAlign="center">
+        <Heading as="h2" size="xl" mb={8}>
+          How It Works
+        </Heading>
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+          <Box>
+            <Heading as="h3" size="md" mb={4}>
+              1. Select Service
+            </Heading>
+            <Text>Choose the car service you need from our wide range of options.</Text>
+          </Box>
+          <Box>
+            <Heading as="h3" size="md" mb={4}>
+              2. Book Appointment
+            </Heading>
+            <Text>Select a convenient date and time for your car service appointment.</Text>
+          </Box>
+          <Box>
+            <Heading as="h3" size="md" mb={4}>
+              3. Enjoy Service
+            </Heading>
+            <Text>Bring your car to our workshop and let our expert mechanics take care of it.</Text>
+          </Box>
+        </SimpleGrid>
+      </Container>
+    </Box>
+  );
+};
+
+export default Index;
