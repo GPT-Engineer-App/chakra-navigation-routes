@@ -46,23 +46,45 @@ const BookingForm = () => {
   };
 
   const handleBooking = () => {
-    const baseRate = 558;
-    const cost = baseRate + distance;
+    const toast = useToast();
+    const errors = {};
 
-    navigate("/booking-confirmation", {
-      state: {
-        serviceType,
-        name,
-        phone,
-        vehicleMake,
-        vehicleModel,
-        origin,
-        destination,
-        dateTime,
-        distance,
-        cost,
-      },
-    });
+    if (!serviceType) errors.serviceType = "Service type is required";
+    if (!name) errors.name = "Name is required";
+    if (!phone) errors.phone = "Phone number is required";
+    if (!vehicleMake) errors.vehicleMake = "Vehicle make is required";
+    if (!vehicleModel) errors.vehicleModel = "Vehicle model is required";
+    if (!origin) errors.origin = "Origin is required";
+    if (!destination) errors.destination = "Destination is required";
+    if (!dateTime) errors.dateTime = "Date and time are required";
+
+    if (Object.keys(errors).length === 0) {
+      const cost = calculateCost();
+      navigate("/booking-confirmation", {
+        state: {
+          serviceType,
+          name,
+          phone,
+          vehicleMake,
+          vehicleModel,
+          origin,
+          destination,
+          dateTime,
+          distance,
+          cost,
+        },
+      });
+    } else {
+      Object.values(errors).forEach((errorMessage) => {
+        toast({
+          title: "Validation Error",
+          description: errorMessage,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      });
+    }
   };
 
   const handleMapData = (data) => {
